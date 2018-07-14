@@ -30,8 +30,9 @@ class UserSerializer(serializers.Serializer):
         code = ''.join(
             random.choice(string.digits) for _ in range(CODE_LENGTH))
         session = self.context['request'].session
-        session['code_verification'] = code
+        session['code'] = code
         session['phone'] = phone
+        print(code)
 
 
 class CodeSerializer(serializers.Serializer):
@@ -48,12 +49,13 @@ class CodeSerializer(serializers.Serializer):
         if not result:
             self.fail('incorrect_code')
 
-        if self.code != self.context['code']:
+        if attr != self.context['request'].session['code']:
             self.fail('incorrect_code')
 
         return attr
 
     def create(self):
+        self.is_valid(raise_exception=True)
         phone = self.context['request'].session['phone']
         user, created = User.objects.get_or_create(username=phone, phone=phone)
         token, created = Token.objects.get_or_create(user=user)

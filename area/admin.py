@@ -10,3 +10,6 @@ class MicroAreaAdmin(admin.ModelAdmin):
          {'fields': ('latitude_right', 'longitude_right')}),
         ('состояние', {'fields': ('level',)}),
     )
+    list_filter = ('level', )
+    search_fields = ('id', 'latitude_left', 'longitude_left',
+                     'latitude_right', 'longitude_right')

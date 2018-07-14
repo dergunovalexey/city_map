@@ -8,4 +8,4 @@ class MicroAreaSerializer(ModelSerializer):
         fields = ('id', 'latitude_left', 'longitude_left', 'latitude_right',
                   'longitude_right', 'level')
         read_only_fields = ('id', 'latitude_left', 'longitude_left',
-                          'latitude_right', 'longitude_right', 'level')
+                            'latitude_right', 'longitude_right', 'level')

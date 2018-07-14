@@ -20,3 +20,9 @@ class UserSerializer(serializers.Serializer):
             self.fail('already_exists')
 
         return attr
+
+    def create(self):
+        self.is_valid(raise_exception=True)
+        phone = self.data['phone']
+        user = User.objects.create(username=phone, phone=phone)
+        return user

@@ -32,7 +32,6 @@ class UserSerializer(serializers.Serializer):
         session = self.context['request'].session
         session['code'] = code
         session['phone'] = phone
-        print(code)
 
 
 class CodeSerializer(serializers.Serializer):

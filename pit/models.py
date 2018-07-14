@@ -7,6 +7,8 @@ class Pit(models.Model):
     number_of_jolting = models.PositiveIntegerField(
         verbose_name='Количество толчков')
     speed = models.FloatField(verbose_name='Скорость')
+    created_at = models.DateTimeField(verbose_name='Дата и время создания',
+                                      auto_now_add=True)
 
     class Meta:
         verbose_name = 'Сигнал неровности дороги'

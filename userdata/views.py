@@ -16,7 +16,8 @@ class CodeVerificationView(GenericViewSet):
     serializer_class = CodeSerializer
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(
-            data=request.data)
-        serializer.create()
-        return Response(status=201)
+        serializer = self.get_serializer(data=request.data)
+        token = serializer.create()
+        return Response(
+            status=201,
+            headers={'Authorization': 'Token %s' % token.key})

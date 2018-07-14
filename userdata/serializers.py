@@ -3,6 +3,7 @@ import re
 from userdata.models import User
 import string
 import random
+from rest_framework.authtoken.models import Token
 
 
 CODE_LENGTH = 6
@@ -41,7 +42,6 @@ class CodeSerializer(serializers.Serializer):
     default_error_messages = {
         "incorrect_code": "Неверный код",
         "already_exists": "Номер уже зарегистрирован"
-
     }
 
     code = serializers.CharField(max_length=CODE_LENGTH)
@@ -66,3 +66,4 @@ class CodeSerializer(serializers.Serializer):
     def create(self):
         phone = self.request.session['phone']
         User.objects.create(username=phone, phone=phone)
+        return Token.objects.get_or_create(user=phone)

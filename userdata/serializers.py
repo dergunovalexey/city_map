@@ -5,8 +5,11 @@ import string
 import random
 
 
+CODE_LENGTH = 6
+
+
 class UserSerializer(serializers.Serializer):
-    phone = serializers.CharField(max_length=11)
+    phone = serializers.CharField(max_length=12)
 
     default_error_messages = {
         "incorrect_number": "Неверный формат номера",
@@ -14,7 +17,7 @@ class UserSerializer(serializers.Serializer):
     }
 
     def validate_phone(self, attr):
-        result = re.match(r"^\+\d{11}$", self.phone)
+        result = re.match(r"^\+\d{11}$", attr)
         if not result:
             self.fail('incorrect_number')
 
@@ -23,13 +26,13 @@ class UserSerializer(serializers.Serializer):
 
         return attr
 
-    def create(self, session):
+    def create(self):
         self.is_valid(raise_exception=True)
         phone = self.data['phone']
 
         code = ''.join(
-            random.choice(string.digits) for _ in range(self.CODE_LENGTH))
-
+            random.choice(string.digits) for _ in range(CODE_LENGTH))
+        session = self.context['request'].session
         session['code_verification'] = code
         session['phone'] = phone
 
@@ -39,13 +42,11 @@ class CodeSerializer(serializers.Serializer):
         "incorrect_code": "Неверный код"
     }
 
-    CODE_LENGTH = 6
-
     code = serializers.CharField(max_length=CODE_LENGTH)
 
     def validate_code(self, attr):
 
-        result = re.match(r"^\d{%d}$" % self.CODE_LENGTH, self.code)
+        result = re.match(r"^\d{%d}$" % CODE_LENGTH, attr)
 
         if not result:
             self.fail('incorrect_code')

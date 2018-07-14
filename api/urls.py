@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^doc/$', schema_view),
     url(r'^pit/', include('pit.urls')),
     url(r'^area/', include('area.urls')),
+    url(r'^userdata/', include('userdata.urls')),
 ]

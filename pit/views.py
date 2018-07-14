@@ -6,4 +6,4 @@ from pit.serializers import PitSerializer
 
 class PitViews(CreateModelMixin, GenericViewSet):
     serializer_class = PitSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]

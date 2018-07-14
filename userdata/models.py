@@ -4,8 +4,8 @@ from django.core.validators import RegexValidator
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=11, verbose_name="Номер телефона",
+    phone = models.CharField(max_length=12, verbose_name="Номер телефона",
                              validators=[
-                                 RegexValidator('+\d{10}',
+                                 RegexValidator('\+\d{11}',
                                                 message="Неверный номер")
                                  ])

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api',
     'area',
     'pit',
+    'complaint',
 ]
 
 MIDDLEWARE = [

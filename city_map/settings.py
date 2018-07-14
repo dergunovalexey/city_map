@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'area',
     'pit',
     'complaint',
+    'userdata',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# User settings
+
+AUTH_USER_MODEL = 'userdata.User'
 
 # CORS settings
 

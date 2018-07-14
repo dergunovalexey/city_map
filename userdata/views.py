@@ -17,7 +17,6 @@ class CodeVerificationView(GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(
-            data=request.data,
-            context={'code': request.session['code_verification']})
-        serializer.create(request.session)
+            data=request.data)
+        serializer.create()
         return Response(status=201)

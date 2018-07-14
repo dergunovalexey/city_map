@@ -39,7 +39,9 @@ class UserSerializer(serializers.Serializer):
 
 class CodeSerializer(serializers.Serializer):
     default_error_messages = {
-        "incorrect_code": "Неверный код"
+        "incorrect_code": "Неверный код",
+        "already_exists": "Номер уже зарегистрирован"
+
     }
 
     code = serializers.CharField(max_length=CODE_LENGTH)
@@ -54,8 +56,13 @@ class CodeSerializer(serializers.Serializer):
         if self.code != self.context['code']:
             self.fail('incorrect_code')
 
+        phone = self.context.session['phone']
+
+        if User.objects.filter(phone=phone).exists():
+            self.fail('already_exists')
+
         return attr
 
-    def create(self, session):
-        phone = session['phone']
+    def create(self):
+        phone = self.request.session['phone']
         User.objects.create(username=phone, phone=phone)

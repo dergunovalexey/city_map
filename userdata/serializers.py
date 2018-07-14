@@ -13,17 +13,13 @@ class UserSerializer(serializers.Serializer):
     phone = serializers.CharField(max_length=12)
 
     default_error_messages = {
-        "incorrect_number": "Неверный формат номера",
-        "already_exists": "Номер уже зарегистрирован"
+        "incorrect_number": "Неверный формат номера"
     }
 
     def validate_phone(self, attr):
         result = re.match(r"^\+\d{11}$", attr)
         if not result:
             self.fail('incorrect_number')
-
-        if User.objects.filter(phone=attr).exists():
-            self.fail('already_exists')
 
         return attr
 
@@ -40,8 +36,7 @@ class UserSerializer(serializers.Serializer):
 
 class CodeSerializer(serializers.Serializer):
     default_error_messages = {
-        "incorrect_code": "Неверный код",
-        "already_exists": "Номер уже зарегистрирован"
+        "incorrect_code": "Неверный код"
     }
 
     code = serializers.CharField(max_length=CODE_LENGTH)
@@ -55,11 +50,6 @@ class CodeSerializer(serializers.Serializer):
 
         if self.code != self.context['code']:
             self.fail('incorrect_code')
-
-        phone = self.context.session['phone']
-
-        if User.objects.filter(phone=phone).exists():
-            self.fail('already_exists')
 
         return attr
 

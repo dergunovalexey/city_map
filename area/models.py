@@ -1,4 +1,5 @@
 from django.db import models
+from area.choices import LevelDangerous
 
 
 class MicroArea(models.Model):
@@ -15,6 +16,9 @@ class MicroArea(models.Model):
                                        help_text=right_desc)
     longitude_right = models.FloatField(verbose_name=longitude,
                                         help_text=right_desc)
+    level = models.PositiveSmallIntegerField(
+        choices=LevelDangerous.CHOICES, default=LevelDangerous.NOT,
+        verbose_name='Уровень опасности участка')
 
     class Meta:
         verbose_name = 'Участок города'

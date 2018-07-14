@@ -5,5 +5,7 @@ from area.models import MicroArea
 class MicroAreaSerializer(ModelSerializer):
     class Meta:
         model = MicroArea
-        fields = ('__all__', )
-        readonly_fields = ('__all__', )
+        fields = ('id', 'latitude_left', 'longitude_left', 'latitude_right',
+                  'longitude_right', 'level')
+        read_only_fields = ('id', 'latitude_left', 'longitude_left',
+                          'latitude_right', 'longitude_right', 'level')

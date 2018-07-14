@@ -20,4 +20,4 @@ class CodeVerificationView(GenericViewSet):
         token = serializer.create()
         return Response(
             status=201,
-            headers={'Authorization': 'Token %s' % token.key})
+            headers={'Authorization': 'Token %s' % token})

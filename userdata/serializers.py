@@ -65,5 +65,6 @@ class CodeSerializer(serializers.Serializer):
 
     def create(self):
         phone = self.request.session['phone']
-        User.objects.create(username=phone, phone=phone)
-        return Token.objects.get_or_create(user=phone)
+        user, created = User.objects.get_or_create(username=phone, phone=phone)
+        token, created = Token.objects.get_or_create(user=user)
+        return token.key

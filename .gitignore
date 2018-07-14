@@ -4,7 +4,7 @@
 settings_local.py
 *pycache*
 
-media/*
+media/complaints/*
 
 vir
 env

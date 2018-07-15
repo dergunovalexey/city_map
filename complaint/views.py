@@ -1,11 +1,13 @@
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.mixins import (ListModelMixin, CreateModelMixin,
+                                   RetrieveModelMixin)
 from rest_framework.permissions import IsAuthenticated
 from complaint.models import Complaint
 from complaint.serializers import ComplaintSerializer
 
 
-class ComplaintViews(ListModelMixin, CreateModelMixin, GenericViewSet):
+class ComplaintViews(ListModelMixin, CreateModelMixin,
+                     RetrieveModelMixin, GenericViewSet):
     queryset = Complaint.objects.all()
     serializer_class = ComplaintSerializer
 

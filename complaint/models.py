@@ -3,10 +3,11 @@ from complaint.choices import ComplintStatus
 
 
 class Complaint(models.Model):
-    user = models.ForeignKey('userdata.User', verbose_name='Пользователь')
+    # user = models.ForeignKey('userdata.User', verbose_name='Пользователь')
     title = models.CharField(max_length=64, verbose_name='Заголовок')
     description = models.CharField(max_length=256, verbose_name='Описание')
-    photo = models.ImageField(upload_to='complaints/', verbose_name='Фото')
+    photo = models.ImageField(upload_to='complaints/', verbose_name='Фото',
+                              blank=True, null=True)
     status = models.PositiveSmallIntegerField(
         choices=ComplintStatus.CHOICES, default=ComplintStatus.PROCESSING,
         verbose_name='Статус')

@@ -15,5 +15,5 @@ class ComplaintViews(ListModelMixin, CreateModelMixin, GenericViewSet):
     #     return Complaint.objects.filter(user=user
     #                                     ).order_by('-created_at')
 
-    def pre_save(self, obj):
-        obj.photo = self.request.FILES.get('photo')
+    # def pre_save(self, obj):
+    #     obj.photo = self.request.FILES.get('photo')

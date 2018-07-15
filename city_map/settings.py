@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'pit',
     'complaint',
     'userdata',
+    'citizen',
 ]
 
 MIDDLEWARE = [

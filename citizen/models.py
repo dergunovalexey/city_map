@@ -2,9 +2,10 @@ from django.db import models
 from complaint.choices import ComplintStatus
 
 
-class Complaint(models.Model):
+class Citizen(models.Model):
     # user = models.ForeignKey('userdata.User', verbose_name='Пользователь')
     title = models.CharField(max_length=64, verbose_name='Заголовок')
+    address = models.CharField(max_length=256, verbose_name='Адрес')
     description = models.CharField(max_length=256, verbose_name='Описание')
     photo = models.ImageField(upload_to='complaints/', verbose_name='Фото',
                               default='default.JPG')

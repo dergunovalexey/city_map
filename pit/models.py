@@ -1,4 +1,6 @@
 from django.db import models
+from area.models import MicroArea
+from area.choices import LevelDangerous
 
 
 class Pit(models.Model):
@@ -16,3 +18,21 @@ class Pit(models.Model):
 
     def __str__(self):
         return 'Сигнал неровности дороги №{}'.format(self.id)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        obj, created = MicroArea.objects.get_or_create(
+            latitude_left=self.latitude, longitude_left=self.longitude,
+            latitude_right=self.latitude, longitude_right=self.longitude)
+        if self.speed < 200:
+            status = LevelDangerous.NOT
+        elif self.speed < 600:
+            status = LevelDangerous.LOW
+        elif self.speed < 3000:
+            status = LevelDangerous.MIDDLE
+        else:
+            status = LevelDangerous.HIGH
+        obj.level = status
+        obj.save()
+        super().save(force_insert=False, force_update=False, using=None,
+                     update_fields=None)

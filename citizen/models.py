@@ -9,8 +9,8 @@ class Citizen(models.Model):
     description = models.CharField(max_length=256, verbose_name='Описание')
     photo = models.ImageField(upload_to='complaints/', verbose_name='Фото',
                               default='default.JPG')
-    latitude = models.FloatField(verbose_name='Широта')
-    longitude = models.FloatField(verbose_name="Долгота")
+    latitude = models.FloatField(verbose_name='Широта', blank=True, null=True)
+    longitude = models.FloatField(verbose_name="Долгота", blank=True, null=True)
     status = models.PositiveSmallIntegerField(
         choices=ComplintStatus.CHOICES, default=ComplintStatus.PROCESSING,
         verbose_name='Статус')

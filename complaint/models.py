@@ -7,7 +7,9 @@ class Complaint(models.Model):
     title = models.CharField(max_length=64, verbose_name='Заголовок')
     description = models.CharField(max_length=256, verbose_name='Описание')
     photo = models.ImageField(upload_to='complaints/', verbose_name='Фото',
-                              blank=True, null=True)
+                              default='borat.jpg')
+    latitude = models.FloatField(verbose_name='Широта')
+    longitude = models.FloatField(verbose_name="Долгота")
     status = models.PositiveSmallIntegerField(
         choices=ComplintStatus.CHOICES, default=ComplintStatus.PROCESSING,
         verbose_name='Статус')

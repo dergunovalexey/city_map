@@ -6,7 +6,8 @@ from complaint.models import Complaint
 class ComplaintAdmin(admin.ModelAdmin):
     fieldsets = (
         # (None, {'fields': ('user', )}),
-        ('Заявка', {'fields': ('title', 'description')}),
+        ('Заявка', {'fields': (
+            'title', 'description', 'latitude', 'longitude', 'photo')}),
         ('Состояние', {'fields': ('status', 'updated_at', 'created_at')}),
     )
     list_filter = ('status', 'created_at', 'updated_at')

@@ -27,8 +27,10 @@ class UserSerializer(serializers.Serializer):
         self.is_valid(raise_exception=True)
         phone = self.data['phone']
 
-        code = ''.join(
-            random.choice(string.digits) for _ in range(CODE_LENGTH))
+        #code = ''.join(
+        #    random.choice(string.digits) for _ in range(CODE_LENGTH))
+
+        code = '777000'
         session = self.context['request'].session
         session['code'] = code
         session['phone'] = phone

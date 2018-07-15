@@ -19,8 +19,8 @@ class Complaint(models.Model):
                                       verbose_name='Дата и время создания')
 
     class Meta:
-        verbose_name = 'Заявка'
-        verbose_name_plural = 'Заявки'
+        verbose_name = 'Заявка на ремонт дороги'
+        verbose_name_plural = 'Заявки на ремонт дороги'
 
     def __str__(self):
         return 'Заявка № {}'.format(self.id)

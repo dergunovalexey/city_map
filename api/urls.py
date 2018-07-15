@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^pit/', include('pit.urls')),
     url(r'^area/', include('area.urls')),
     url(r'^userdata/', include('userdata.urls')),
+    url(r'^complaint/', include('complaint.urls')),
 ]

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.contrib import admin
+
+admin.site.site_header = 'Панель администратора "City map"'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'api',
     'area',
     'pit',
+    'complaint',
     'userdata',
 ]
 
@@ -129,6 +133,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+MEDIA_URL = '/media/'
+
+
 # User settings
 
 AUTH_USER_MODEL = 'userdata.User'
@@ -157,3 +168,24 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+# REST settings
+
+REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.TokenAuthentication',
+        ),
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+            # 'rest_framework.renderers.BrowsableAPIRenderer',
+        ),
+        'DEFAULT_PARSER_CLASSES': (
+            'rest_framework.parsers.JSONParser',
+            'rest_framework.parsers.FormParser',
+            'rest_framework.parsers.MultiPartParser',
+            'rest_framework.parsers.FileUploadParser',
+        ),
+}
+
+UPLOADED_FILES_USE_URL = True

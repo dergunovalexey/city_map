@@ -190,3 +190,8 @@ REST_FRAMEWORK = {
 }
 
 UPLOADED_FILES_USE_URL = True
+
+try:
+    from .settings_local import *
+except Exception as e:
+    print("Cant find local settings. please create settings_local.py")

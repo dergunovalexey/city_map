@@ -7,3 +7,4 @@ class RoadTreck(models.Model):
     end = JSONField()
     accselerometer_points = JSONField()
     magnetometer_points = JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)

@@ -24,9 +24,6 @@ class RoadTrackSerializer(serializers.ModelSerializer):
 
         checks = (lat, lng, timst)
 
-        if not all(checks):
-            self.fail('incorrect')
-
         if not all(list(map(lambda x: isinstance(x, float), checks))):
             self.fail('incorrect_type_content')
 
@@ -46,9 +43,6 @@ class RoadTrackSerializer(serializers.ModelSerializer):
             z = a.get('Z')
 
             checks = (x, y, z, timst)
-
-            if not all(checks):
-                self.fail('incorrect')
 
             if not all(list(map(lambda x: isinstance(x, float), checks))):
                 self.fail('incorrect_type_content')

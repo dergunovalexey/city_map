@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'complaint',
     'userdata',
     'citizen',
+    'trackrecorder',
 ]
 
 MIDDLEWARE = [

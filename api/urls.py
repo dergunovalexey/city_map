@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^userdata/', include('userdata.urls')),
     url(r'^complaint/', include('complaint.urls')),
     url(r'^citizen/', include('citizen.urls')),
+    url(r'^trackrecorder/', include('trackrecorder.urls')),
 ]

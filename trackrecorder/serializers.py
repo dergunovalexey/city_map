@@ -22,13 +22,12 @@ class RoadTrackSerializer(serializers.ModelSerializer):
         lng = attr.get('lng')
         timst = attr.get('timestamp')
 
-        if not all((lat, lng, timst)):
-            self.fail('incorrect')
-
-        checks = (isinstance(lat, float), isinstance(lng, float),
-                  isinstance(timst, int))
+        checks = (lat, lng, timst)
 
         if not all(checks):
+            self.fail('incorrect')
+
+        if not all(list(map(lambda x: isinstance(x, float), checks))):
             self.fail('incorrect_type_content')
 
         return attr
@@ -46,13 +45,12 @@ class RoadTrackSerializer(serializers.ModelSerializer):
             y = a.get('Y')
             z = a.get('Z')
 
-            if not all((x, y, z, timst)):
-                self.fail('incorrect')
-
-            checks = (isinstance(x, float), isinstance(y, float),
-                      isinstance(z, float), isinstance(timst, int))
+            checks = (x, y, z, timst)
 
             if not all(checks):
+                self.fail('incorrect')
+
+            if not all(list(map(lambda x: isinstance(x, float), checks))):
                 self.fail('incorrect_type_content')
 
         return attr

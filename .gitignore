@@ -4,6 +4,10 @@
 settings_local.py
 *pycache*
 
+media/*
+!media/borat.jpg
+!media/default.JPG
+
 vir
 env
 venv

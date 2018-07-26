@@ -7,4 +7,4 @@ class CitizenSerializer(ModelSerializer):
         model = Citizen
         fields = ('id', 'title', 'description', 'address', 'latitude',
                   'longitude', 'photo', 'status', 'updated_at', 'created_at')
-        read_only_fields = ('id', 'status', 'photo', 'updated_at', 'created_at')
+        read_only_fields = ('id', 'status', 'updated_at', 'created_at')
